@@ -1,25 +1,23 @@
 package tests;
 
 import base.BaseTestSetup;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LoginTests extends BaseTestSetup {
 
-    @BeforeMethod(alwaysRun = true)
-
-    @Test
+    @Test(priority=1)
     public void signUpTest(){
 
     }
 
-    @Test
+    @Test(priority=2)
     public void simpleLoginTest(){
 
     }
 
-    @Test
+    @Test(priority=3)
     public void loginFailTest(){
 
     }
+
 }
