@@ -54,6 +54,7 @@ public class BaseTestSetup {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+        logger.info("Tearing down Chrome Browser.");
         driver.quit();
     }
 }
