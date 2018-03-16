@@ -6,9 +6,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.log4testng.Logger;
+
 
 public class BaseTestSetup {
 
@@ -19,6 +21,15 @@ public class BaseTestSetup {
 
     private WebDriver driver;
     private ChromeOptions chromeOptions;
+
+    @BeforeClass
+    public void prepareLogger() throws Exception
+    {
+        Class<? extends BaseTestSetup> currTestClass = getClass();
+        this.logger = Logger.getLogger(currTestClass);
+        String message = "Started executing class " + this.getClass().getName();
+        logger.info(message);
+    }
 
     @BeforeSuite(alwaysRun = true)
     public void setUpBrowser(ITestContext context){
