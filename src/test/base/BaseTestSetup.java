@@ -15,8 +15,9 @@ public class BaseTestSetup {
     private ChromeOptions chromeOptions;
 
     @BeforeSuite
-    public void initializeTestBaseSetup(){
+    public void setUpBrowser(){
         setChromeOptions();
+        driver = new ChromeDriver(chromeOptions);
     }
 
     private void setChromeOptions(){
@@ -27,8 +28,7 @@ public class BaseTestSetup {
     }
 
     @BeforeMethod(alwaysRun = true)
-    private void setDriver(){
-        driver = new ChromeDriver(chromeOptions);
+    private void openBasePage(){
         driver.navigate().to("https://www.appdirect.com/");
     }
 
