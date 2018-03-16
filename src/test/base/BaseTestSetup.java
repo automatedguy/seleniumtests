@@ -4,12 +4,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.log4testng.Logger;
+import pages.LandingPage;
+import pages.LoginPage;
 
 
 public class BaseTestSetup {
@@ -21,6 +24,7 @@ public class BaseTestSetup {
 
     private WebDriver driver;
     private ChromeOptions chromeOptions;
+    public LandingPage landingPage = null;
 
     @BeforeClass
     public void prepareLogger() throws Exception
@@ -50,11 +54,20 @@ public class BaseTestSetup {
         driver = new ChromeDriver(chromeOptions);
         logger.info("Navigating to Base URL: " + BASE_URL);
         driver.navigate().to(BASE_URL);
+        landingPage = initLandingPage(driver);
     }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestContext context) {
         logger.info("Tearing down Chrome Browser.");
         driver.quit();
+    }
+
+    protected LandingPage initLandingPage(WebDriver driver){
+        return PageFactory.initElements(driver, LandingPage.class);
+    }
+
+    protected LoginPage initLoginPage(WebDriver driver){
+        return PageFactory.initElements(driver, LoginPage.class);
     }
 }
