@@ -4,7 +4,7 @@ import base.BaseTestSetup;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class LoginTests extends BaseTestSetup{
+public class LoginTests extends BaseTestSetup {
 
     @BeforeMethod(alwaysRun = true)
 

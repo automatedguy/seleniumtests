@@ -34,8 +34,6 @@ public class BaseTestSetup {
     @BeforeSuite(alwaysRun = true)
     public void setUpBrowser(ITestContext context){
         setChromeOptions();
-        logger.info("Starting Chrome Browser...");
-        driver = new ChromeDriver(chromeOptions);
     }
 
     private void setChromeOptions(){
@@ -47,13 +45,15 @@ public class BaseTestSetup {
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void openBasePage(){
+    public void openBasePage(ITestContext context){
+        logger.info("Starting Chrome Browser...");
+        driver = new ChromeDriver(chromeOptions);
         logger.info("Navigating to Base URL: " + BASE_URL);
         driver.navigate().to(BASE_URL);
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown() {
+    public void tearDown(ITestContext context) {
         logger.info("Tearing down Chrome Browser.");
         driver.quit();
     }
