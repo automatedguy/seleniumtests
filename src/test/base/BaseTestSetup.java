@@ -11,7 +11,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.log4testng.Logger;
-import pages.LandingPage;
 import pages.LoginPage;
 
 
@@ -22,9 +21,9 @@ public class BaseTestSetup {
 
     public static Logger logger = Logger.getLogger(BaseTestSetup.class);
 
-    private WebDriver driver;
+    public WebDriver driver;
     private ChromeOptions chromeOptions;
-    public LandingPage landingPage = null;
+    public BasePage basePage = null;
 
     @BeforeClass
     public void prepareLogger() throws Exception
@@ -54,7 +53,7 @@ public class BaseTestSetup {
         driver = new ChromeDriver(chromeOptions);
         logger.info("Navigating to Base URL: " + BASE_URL);
         driver.navigate().to(BASE_URL);
-        landingPage = initLandingPage(driver);
+        basePage = initBasePage(driver);
     }
 
     @AfterMethod(alwaysRun = true)
@@ -63,8 +62,8 @@ public class BaseTestSetup {
         driver.quit();
     }
 
-    protected LandingPage initLandingPage(WebDriver driver){
-        return PageFactory.initElements(driver, LandingPage.class);
+    protected BasePage initBasePage(WebDriver driver){
+        return PageFactory.initElements(driver, BasePage.class);
     }
 
     protected LoginPage initLoginPage(WebDriver driver){
