@@ -9,7 +9,17 @@ public class LoginTests extends BaseTestSetup{
     @BeforeMethod(alwaysRun = true)
 
     @Test
+    public void signUpTest(){
+
+    }
+
+    @Test
     public void simpleLoginTest(){
+
+    }
+
+    @Test
+    public void loginFailTest(){
 
     }
 }
