@@ -1,12 +1,10 @@
 package pages;
 
 import base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
 
 public class LoginPage extends BasePage {
 
@@ -25,6 +23,7 @@ public class LoginPage extends BasePage {
     @FindBy(css = "#id7")
     private WebElement logInbutton;
 
+    @FindBy(css = ".adb-container_footer > menu > a")
     private WebElement signUpButton;
 
     /* Actions */
@@ -42,12 +41,6 @@ public class LoginPage extends BasePage {
     }
 
     public SignUpPage clickSignUpbutton(){
-        List<WebElement> elementList = driver.findElements(By.cssSelector("a"));
-        for(WebElement element: elementList) {
-            logger.info("Text: [" + element.getText() + "]");
-            if (element.getText().equals("Sign Up"))
-                signUpButton = element;
-        }
         clickElement(signUpButton, "Sign Up button");
         return initSignUpPage(this.driver);
     }
