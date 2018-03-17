@@ -3,13 +3,14 @@ package pages;
 import base.BasePage;
 import org.openqa.selenium.WebDriver;
 
-public class AccountSetupPage extends BasePage {
+public class MailPage extends BasePage {
 
-    public AccountSetupPage(WebDriver iDriver) {
+    public MailPage(WebDriver iDriver) {
         super(iDriver);
     }
 
     /* Locators */
 
     /* Actions */
+
 }

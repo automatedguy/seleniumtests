@@ -11,12 +11,12 @@ public class SignUpTests extends BaseTestSetup {
 
     @BeforeMethod()
     private void clickLogin(){
-        basePage.clickLoginButton();
+        loginPage = landingPage.clickLoginNavButton();
     }
 
     @Test(priority=1)
     public void signUpTest(){
-
+        loginPage.clickSignUpbutton();
     }
 
     @Test(priority=2)
