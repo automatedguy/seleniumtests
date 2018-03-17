@@ -65,8 +65,4 @@ public class BaseTestSetup {
     protected BasePage initBasePage(WebDriver driver){
         return PageFactory.initElements(driver, BasePage.class);
     }
-
-    protected LoginPage initLoginPage(WebDriver driver){
-        return PageFactory.initElements(driver, LoginPage.class);
-    }
 }
