@@ -26,7 +26,6 @@ public class BasePage {
         } catch (InvalidElementStateException ouch){
             logger.info("Cant clear the input.");
         }
-
         element.sendKeys(data);
     }
 

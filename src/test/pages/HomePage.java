@@ -36,6 +36,7 @@ public class HomePage extends BasePage {
 
     public Boolean assertSignUpIsDisplayed(){
         logger.info("Asserting Sign Up header is displayed.");
+        waitForElement(signUp, 10, "Sign Up menu header");
         if(signUp.isDisplayed()){
             logger.info("Sign Up is displayed");
             return true;

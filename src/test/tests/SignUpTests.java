@@ -101,6 +101,11 @@ public class SignUpTests extends BaseTestSetup {
         String firstName = (String) context.getAttribute("firstName");
         Assert.assertTrue(homePage.assertAccountUserName(firstName));
 
+        homePage.clickAccountHeader();
+        homePage.clickLogout();
+
+        Assert.assertTrue(homePage.assertSignUpIsDisplayed());
+
         logger.info(TEST_PASSED);
     }
 }
