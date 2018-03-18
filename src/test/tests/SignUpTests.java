@@ -34,7 +34,7 @@ public class SignUpTests extends BaseTestSetup {
         String newCustomerEmail = mailPage.createNewEmailAccount(getRandomString(9));
         context.setAttribute("newCustomerEmail", newCustomerEmail);
 
-        signUpPage = loginPage.clickSignUpbutton();
+        signUpPage = loginPage.clickSignUpButton();
         signUpPage.fillEmail(newCustomerEmail);
         thanksPage = signUpPage.clickSignUpButton();
 
@@ -78,6 +78,7 @@ public class SignUpTests extends BaseTestSetup {
 
     @Test(priority=3)
     public void failLoginTest(ITestContext context){
+        String wrongPassMsg = "Unknown username / password";
         String wrongPass = "WrongPassword";
         String newCustomerEmail = (String) context.getAttribute("newCustomerEmail");
         logger.info("Customer email is: " + newCustomerEmail);
@@ -85,6 +86,8 @@ public class SignUpTests extends BaseTestSetup {
         loginPage.fillEmail(newCustomerEmail);
         loginPage.fillPassword(wrongPass);
         loginPage.clickLogInButton();
+
+        Assert.assertTrue(loginPage.assertWrongPassMsg(wrongPassMsg));
 
         logger.info(TEST_PASSED);
     }
