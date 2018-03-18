@@ -53,10 +53,10 @@ public class MailPage extends BasePage {
         return this;
     }
 
-    public String createNewEmailAccount(){
+    public String createNewEmailAccount(String randomEmail){
         openNewTab(MAILINATOR_URL);
         switchToNewTab(2);
-        String newCustomerEmail = getRandomString(9);
+        String newCustomerEmail = randomEmail;
         fillEmailField(newCustomerEmail);
         clickGoButton();
         closeNewTab();

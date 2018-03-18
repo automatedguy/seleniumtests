@@ -14,11 +14,16 @@ import org.testng.log4testng.Logger;
 import pages.LandingPage;
 import pages.MailPage;
 
+import java.security.SecureRandom;
+
 public class BaseTestSetup {
 
     private static final String RESOURCES_PATH = "src/test/resources/";
     private static final String BASE_URL = "https://www.appdirect.com/";
     public static final String TEST_PASSED = "Test PASSED!";
+
+    final String AB = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    SecureRandom rnd = new SecureRandom();
 
     public static Logger logger = Logger.getLogger(BaseTestSetup.class);
 
@@ -33,6 +38,13 @@ public class BaseTestSetup {
         this.logger = Logger.getLogger(currTestClass);
         String message = "Started executing class " + this.getClass().getName();
         logger.info(message);
+    }
+
+    public String getRandomString(int len){
+        StringBuilder sb = new StringBuilder( len );
+        for( int i = 0; i < len; i++ )
+            sb.append( AB.charAt( rnd.nextInt(AB.length()) ) );
+        return sb.toString();
     }
 
     @BeforeSuite(alwaysRun = true)

@@ -20,8 +20,6 @@ public class BasePage {
         this.driver = iDriver;
     }
     public static Logger logger = Logger.getLogger(BasePage.class);
-    final String AB = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    SecureRandom rnd = new SecureRandom();
 
     /* Common Actions */
 
@@ -50,13 +48,6 @@ public class BasePage {
         ArrayList<String> newTab = new ArrayList(this.driver.getWindowHandles());
         this.driver.switchTo().window(newTab.get(tabIndex));
         logger.info("Child Tab URL: " + "[" +  driver.getCurrentUrl() + "]");
-    }
-
-    public String getRandomString(int len){
-        StringBuilder sb = new StringBuilder( len );
-        for( int i = 0; i < len; i++ )
-            sb.append( AB.charAt( rnd.nextInt(AB.length()) ) );
-        return sb.toString();
     }
 
     public void waitForElement(WebElement element, int timeOutInSeconds, String message){

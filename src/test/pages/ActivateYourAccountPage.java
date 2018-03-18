@@ -73,7 +73,14 @@ public class ActivateYourAccountPage extends BasePage{
         return this;
     }
 
-    public ActivateYourAccountPage selectBussinessSize(String bussinessSize){
+    public ActivateYourAccountPage selectBusinessSize(String businessSize){
+        switch(businessSize){
+            case "Professional" : bussinesSizeProfesionalRdb.click();
+                break;
+            case "SmallBusiness" : bussinesSizeSmallBussinessRdb.click();
+                break;
+            case "Enterprise" : bussinesSizeEnterpriseRdb.click();
+        }
         return this;
     }
 
