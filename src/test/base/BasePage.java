@@ -90,8 +90,8 @@ public class BasePage {
         return PageFactory.initElements(driver, ThanksPage.class);
     }
 
-    protected ActivateAccountPage initActivateAccountPage(WebDriver driver){
-        return PageFactory.initElements(driver,ActivateAccountPage.class);
+    protected ActivateYourAccountPage initActivateYourAccountPage(WebDriver driver){
+        return PageFactory.initElements(driver, ActivateYourAccountPage.class);
     }
 
 }

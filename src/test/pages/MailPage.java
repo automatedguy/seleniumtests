@@ -40,12 +40,16 @@ public class MailPage extends BasePage {
     }
 
     private MailPage clickNewEmail(){
+        waitForElement(emailSender, 5, "Email Sender");
         clickElement(emailSender, "Email Sender");
         return this;
     }
 
     private MailPage clickActivateButton(){
+        driver.switchTo().frame("msg_body");
+        waitForElement(activateButton, 5, "Activate Account button");
         clickElement(activateButton, "Activate Account button");
+        switchToNewTab(3);
         return this;
     }
 
@@ -60,12 +64,12 @@ public class MailPage extends BasePage {
         return newCustomerEmail + MAILINATOR_EMAIL;
     }
 
-    public ActivateAccountPage openNewEmailBox(String newCustomerEmail){
+    public ActivateYourAccountPage openNewEmailBox(String newCustomerEmail){
         openNewTab(MAILINATOR_URL + MAILINATOR_QSTRING + newCustomerEmail.replace(MAILINATOR_EMAIL, ""));
         switchToNewTab(2);
         clickNewEmail();
         clickActivateButton();
-        return initActivateAccountPage(this.driver);
+        return initActivateYourAccountPage(this.driver);
     }
 
 }

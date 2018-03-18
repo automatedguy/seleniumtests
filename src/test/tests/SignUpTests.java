@@ -3,6 +3,7 @@ package tests;
 import base.BaseTestSetup;
 import org.testng.Assert;
 import org.testng.ITestContext;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.*;
@@ -12,7 +13,7 @@ public class SignUpTests extends BaseTestSetup {
     private LoginPage loginPage = null;
     private SignUpPage signUpPage = null;
     private ThanksPage thanksPage = null;
-    private ActivateAccountPage activateAccountPage = null;
+    private ActivateYourAccountPage activateYourAccountPage = null;
     private MailPage mailPage = null;
 
 
@@ -42,7 +43,9 @@ public class SignUpTests extends BaseTestSetup {
         logger.info("Customer email is: " + newCustomerEmail);
 
         mailPage = initMailPage(this.driver);
-        activateAccountPage = mailPage.openNewEmailBox(newCustomerEmail);
+        activateYourAccountPage = mailPage.openNewEmailBox(newCustomerEmail);
+
+        
 
     }
 
