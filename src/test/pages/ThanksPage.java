@@ -36,7 +36,7 @@ public class ThanksPage extends BasePage{
             logger.info("Thanks page msg is right!");
             return true;
         } else {
-            logger.info("Thanks page msg is right!");
+            logger.error("Thanks page msg is not right!");
             return false;
         }
     }
