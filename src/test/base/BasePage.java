@@ -1,9 +1,12 @@
 package base;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.log4testng.Logger;
 import pages.*;
 
@@ -54,6 +57,19 @@ public class BasePage {
         for( int i = 0; i < len; i++ )
             sb.append( AB.charAt( rnd.nextInt(AB.length()) ) );
         return sb.toString();
+    }
+
+    public void waitForElement(WebElement element, int timeOutInSeconds, String message){
+        try {
+            logger.info("Waiting for: [" + message + "]");
+            WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+            wait.withMessage(message);
+            wait.until(ExpectedConditions.visibilityOf(element));
+            logger.info(message + " is displayed");
+        }catch (TimeoutException exception) {
+            logger.error(message + " is not displayed");
+            throw exception;
+        }
     }
 
     /* Factories */

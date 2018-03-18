@@ -22,6 +22,7 @@ public class ThanksPage extends BasePage{
 
     /* Actions  */
     private String getThanksMessage(){
+        waitForElement(thanksMessage, 5, "Thanks confirmation message.");
         return thanksMessage.getText();
     }
 
@@ -30,6 +31,7 @@ public class ThanksPage extends BasePage{
     }
 
     public Boolean assertThanksMsg(String newCustomerEmail){
+        logger.info("Asserting thanks page message.");
         if(getThanksMessage().equals(getExpectedThanksMsg(newCustomerEmail))){
             logger.info("Thanks page msg is right!");
             return true;
