@@ -45,7 +45,7 @@ public class SignUpTests extends BaseTestSetup {
         mailPage = initMailPage(this.driver);
         activateYourAccountPage = mailPage.openNewEmailBox(newCustomerEmail);
 
-        
+
 
     }
 
