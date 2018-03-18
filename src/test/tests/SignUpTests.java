@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTestSetup;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -26,6 +27,7 @@ public class SignUpTests extends BaseTestSetup {
         return mailPage.createNewEmailAccount() + "@mailinator.com";
     }
 
+
     @Test(priority=1)
     public void signUpTest(){
         signUpPage = loginPage.clickSignUpbutton();
@@ -34,6 +36,7 @@ public class SignUpTests extends BaseTestSetup {
 
         signUpPage.fillEmail(newCustomerEmail);
         thanksPage = signUpPage.clickSignUpButton();
+        Assert.assertTrue(thanksPage.assertThanksMsg(newCustomerEmail));
     }
 
     @Test(priority=2)
