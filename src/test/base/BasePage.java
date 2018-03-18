@@ -1,11 +1,13 @@
 package base;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.log4testng.Logger;
 import pages.*;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 
 public class BasePage {
@@ -15,8 +17,8 @@ public class BasePage {
         this.driver = iDriver;
     }
     public static Logger logger = Logger.getLogger(BasePage.class);
-
-    private int currentTabIndex = 0;
+    final String AB = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    SecureRandom rnd = new SecureRandom();
 
     /* Common Actions */
 
@@ -31,13 +33,27 @@ public class BasePage {
         element.click();
     }
 
+    public void openNewTab(String url){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.open('" + url + "','_blank');");
+    }
 
-    public void switchToNewTab(){
+    public void closeNewTab(){
+
+    }
+
+    public void switchToNewTab(int tabIndex){
         logger.info("Switching to child tab.");
         ArrayList<String> newTab = new ArrayList(this.driver.getWindowHandles());
-        currentTabIndex = currentTabIndex + 1;
-        this.driver.switchTo().window(newTab.get(currentTabIndex));
+        this.driver.switchTo().window(newTab.get(tabIndex));
         logger.info("Child Tab URL: " + "[" +  driver.getCurrentUrl() + "]");
+    }
+
+    public String getRandomString(int len){
+        StringBuilder sb = new StringBuilder( len );
+        for( int i = 0; i < len; i++ )
+            sb.append( AB.charAt( rnd.nextInt(AB.length()) ) );
+        return sb.toString();
     }
 
     /* Factories */
@@ -58,8 +74,8 @@ public class BasePage {
         return PageFactory.initElements(driver, ThanksPage.class);
     }
 
-    protected MailPage initMailPage(WebDriver driver){
-        return PageFactory.initElements(driver, MailPage.class);
+    protected ActivateAccountPage initActivateAccountPage(WebDriver driver){
+        return PageFactory.initElements(driver,ActivateAccountPage.class);
     }
 
 }

@@ -16,7 +16,7 @@ public class SignUpPage extends BasePage {
     @FindBy(css = ".adb-container_content > div > input")
     private WebElement email;
 
-    @FindBy(css = "adb-button__primary adb-toolbar--item")
+    @FindBy(css = "#idb")
     private WebElement signUpButon;
 
     /* Actions */

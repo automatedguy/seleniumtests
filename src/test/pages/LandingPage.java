@@ -20,7 +20,7 @@ public class LandingPage extends BasePage {
 
     public LoginPage clickLoginNavButton(){
         clickElement(loginButton, "LOG IN navigation button");
-        switchToNewTab();
+        switchToNewTab(1);
         return initLoginPage(driver);
     }
 }

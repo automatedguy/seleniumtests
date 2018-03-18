@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.log4testng.Logger;
 import pages.LandingPage;
+import pages.MailPage;
 
 public class BaseTestSetup {
 
@@ -65,5 +66,9 @@ public class BaseTestSetup {
 
     protected LandingPage initLandingPage(WebDriver driver){
         return PageFactory.initElements(driver, LandingPage.class);
+    }
+
+    protected MailPage initMailPage(WebDriver driver){
+        return PageFactory.initElements(driver, MailPage.class);
     }
 }
