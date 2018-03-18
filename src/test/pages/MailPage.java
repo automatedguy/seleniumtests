@@ -12,6 +12,7 @@ public class MailPage extends BasePage {
 
     final String MAILINATOR_URL = "https://www.mailinator.com";
     final String MAILINATOR_EMAIL = "@mailinator.com";
+    final String MAILINATOR_QSTRING = "/v2/inbox.jsp?zone=public&query=";
     /* Locators */
 
     @FindBy(css = "div.panel #inboxfield")
@@ -59,7 +60,9 @@ public class MailPage extends BasePage {
         return newCustomerEmail + MAILINATOR_EMAIL;
     }
 
-    public ActivateAccountPage goToActivateAccountPage(){
+    public ActivateAccountPage openNewEmailBox(String newCustomerEmail){
+        openNewTab(MAILINATOR_URL + MAILINATOR_QSTRING + newCustomerEmail.replace(MAILINATOR_EMAIL, ""));
+        switchToNewTab(2);
         clickNewEmail();
         clickActivateButton();
         return initActivateAccountPage(this.driver);

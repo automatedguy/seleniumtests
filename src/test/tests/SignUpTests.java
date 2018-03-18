@@ -2,20 +2,19 @@ package tests;
 
 import base.BaseTestSetup;
 import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.LoginPage;
-import pages.MailPage;
-import pages.SignUpPage;
-import pages.ThanksPage;
+import pages.*;
 
 public class SignUpTests extends BaseTestSetup {
 
     private LoginPage loginPage = null;
     private SignUpPage signUpPage = null;
     private ThanksPage thanksPage = null;
-    private String newCustomerEmail = "";
+    private ActivateAccountPage activateAccountPage = null;
     private MailPage mailPage = null;
+
 
     @BeforeMethod()
     private void clickLogin(){
@@ -23,10 +22,11 @@ public class SignUpTests extends BaseTestSetup {
     }
 
     @Test(priority=1)
-    public void signUpTest(){
+    public void signUpTest(ITestContext context){
 
         mailPage = initMailPage(this.driver);
-        newCustomerEmail = mailPage.createNewEmailAccount();
+        String newCustomerEmail = mailPage.createNewEmailAccount();
+        context.setAttribute("newCustomerEmail", newCustomerEmail);
 
         signUpPage = loginPage.clickSignUpbutton();
         signUpPage.fillEmail(newCustomerEmail);
@@ -37,12 +37,17 @@ public class SignUpTests extends BaseTestSetup {
     }
 
     @Test(priority=2)
-    public void simpleLoginTest(){
+    public void activateAccountTest(ITestContext context){
+        String newCustomerEmail = (String) context.getAttribute("newCustomerEmail");
+        logger.info("Customer email is: " + newCustomerEmail);
+
+        mailPage = initMailPage(this.driver);
+        activateAccountPage = mailPage.openNewEmailBox(newCustomerEmail);
 
     }
 
     @Test(priority=3)
-    public void loginFailTest(){
+    public void successfulLoginTest(){
 
     }
 
