@@ -66,7 +66,7 @@ public class SignUpTests extends BaseTestSetup {
 
     }
 
-    @Test
+    @Test(priority=3)
     public void failLoginTest(){
 
         logger.info(TEST_PASSED);
