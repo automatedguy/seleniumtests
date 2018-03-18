@@ -15,10 +15,10 @@ public class LoginPage extends BasePage {
     /* Locators */
 
     @FindBy(css = "#username")
-    private WebElement email;
+    private WebElement emailInput;
 
     @FindBy(css = "#password")
-    private WebElement password;
+    private WebElement passwordInput;
 
     @FindBy(css = "#id7")
     private WebElement logInbutton;
@@ -29,14 +29,17 @@ public class LoginPage extends BasePage {
     /* Actions */
 
     public LoginPage fillEmail(String email){
+        fillData(emailInput, "User name input", email);
         return this;
     }
 
     public LoginPage fillPassword(String password){
+        fillData(passwordInput, "Password input", password);
         return this;
     }
 
     public HomePage clickLogInButton(){
+        clickElement(logInbutton, "Login button");
         return initHomePage(this.driver);
     }
 

@@ -39,6 +39,7 @@ public class SignUpTests extends BaseTestSetup {
         thanksPage = signUpPage.clickSignUpButton();
 
         Assert.assertTrue(thanksPage.assertThanksMsg(newCustomerEmail));
+
         logger.info(TEST_PASSED);
     }
 
@@ -51,9 +52,12 @@ public class SignUpTests extends BaseTestSetup {
         activateAccountPage = mailPage.openNewEmailBox(newCustomerEmail);
 
         String firstName = getRandomString(7);
+        context.setAttribute("firstName", firstName);
         activateAccountPage.fillFirstName(firstName);
+
         String lastName = getRandomString(7);
         activateAccountPage.fillLastName(lastName);
+
         activateAccountPage.fillPassword(APP_DIRECT_PASS);
         activateAccountPage.fillconfirmPassword(APP_DIRECT_PASS);
         activateAccountPage.fillCompanyName(COMPANY_NAME);
@@ -62,18 +66,40 @@ public class SignUpTests extends BaseTestSetup {
         activateAccountPage.clickAgreeTermsAndConditions();
         homePage = activateAccountPage.clickCreateAccount();
 
-        logger.info(TEST_PASSED);
+        Assert.assertTrue(homePage.assertAccountUserName(firstName));
 
+        homePage.clickAccountHeader();
+        homePage.clickLogout();
+
+        Assert.assertTrue(homePage.assertSignUpIsDisplayed());
+
+        logger.info(TEST_PASSED);
     }
 
     @Test(priority=3)
-    public void failLoginTest(){
+    public void failLoginTest(ITestContext context){
+        String wrongPass = "WrongPassword";
+        String newCustomerEmail = (String) context.getAttribute("newCustomerEmail");
+        logger.info("Customer email is: " + newCustomerEmail);
+
+        loginPage.fillEmail(newCustomerEmail);
+        loginPage.fillPassword(wrongPass);
+        loginPage.clickLogInButton();
 
         logger.info(TEST_PASSED);
     }
 
     @Test(priority=4)
-    public void successfulLoginTest(){
+    public void successfulLoginTest(ITestContext context){
+        String newCustomerEmail = (String) context.getAttribute("newCustomerEmail");
+        logger.info("Customer email is: " + newCustomerEmail);
+
+        loginPage.fillEmail(newCustomerEmail);
+        loginPage.fillPassword(APP_DIRECT_PASS);
+        homePage = loginPage.clickLogInButton();
+
+        String firstName = (String) context.getAttribute("firstName");
+        Assert.assertTrue(homePage.assertAccountUserName(firstName));
 
         logger.info(TEST_PASSED);
     }
