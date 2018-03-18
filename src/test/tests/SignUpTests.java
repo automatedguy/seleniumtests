@@ -22,21 +22,18 @@ public class SignUpTests extends BaseTestSetup {
         loginPage = landingPage.clickLoginNavButton();
     }
 
-    private String createNewEmailAccount(){
-        mailPage = initMailPage(this.driver);
-        return mailPage.createNewEmailAccount() + "@mailinator.com";
-    }
-
-
     @Test(priority=1)
     public void signUpTest(){
+
+        mailPage = initMailPage(this.driver);
+        newCustomerEmail = mailPage.createNewEmailAccount();
+
         signUpPage = loginPage.clickSignUpbutton();
-
-        newCustomerEmail = createNewEmailAccount();
-
         signUpPage.fillEmail(newCustomerEmail);
         thanksPage = signUpPage.clickSignUpButton();
+
         Assert.assertTrue(thanksPage.assertThanksMsg(newCustomerEmail));
+        logger.info(TEST_PASSED);
     }
 
     @Test(priority=2)

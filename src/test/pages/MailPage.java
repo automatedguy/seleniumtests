@@ -11,6 +11,7 @@ public class MailPage extends BasePage {
     }
 
     final String MAILINATOR_URL = "https://www.mailinator.com";
+    final String MAILINATOR_EMAIL = "@mailinator.com";
     /* Locators */
 
     @FindBy(css = "div.panel #inboxfield")
@@ -55,7 +56,7 @@ public class MailPage extends BasePage {
         clickGoButton();
         closeNewTab();
         switchToNewTab(1);
-        return newCustomerEmail;
+        return newCustomerEmail + MAILINATOR_EMAIL;
     }
 
     public ActivateAccountPage goToActivateAccountPage(){

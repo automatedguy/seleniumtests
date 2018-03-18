@@ -18,6 +18,7 @@ public class BaseTestSetup {
 
     private static final String RESOURCES_PATH = "src/test/resources/";
     private static final String BASE_URL = "https://www.appdirect.com/";
+    public static final String TEST_PASSED = "Test PASSED!";
 
     public static Logger logger = Logger.getLogger(BaseTestSetup.class);
 
