@@ -64,7 +64,7 @@ public class MailPage extends BasePage {
         return newCustomerEmail + MAILINATOR_EMAIL;
     }
 
-    public ActivateYourAccountPage openNewEmailBox(String newCustomerEmail){
+    public ActivateAccountPage openNewEmailBox(String newCustomerEmail){
         openNewTab(MAILINATOR_URL + MAILINATOR_QSTRING + newCustomerEmail.replace(MAILINATOR_EMAIL, ""));
         switchToNewTab(2);
         clickNewEmail();

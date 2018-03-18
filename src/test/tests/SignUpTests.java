@@ -10,14 +10,15 @@ import pages.*;
 public class SignUpTests extends BaseTestSetup {
 
     private LoginPage loginPage = null;
+    private MailPage mailPage = null;
     private SignUpPage signUpPage = null;
     private ThanksPage thanksPage = null;
-    private ActivateYourAccountPage activateYourAccountPage = null;
-    private MailPage mailPage = null;
+    private ActivateAccountPage activateAccountPage = null;
+    private HomePage homePage = null;
 
-    private final String APP_DIRECT_PASSWD = "AppDirect#1";
+    private final String APP_DIRECT_PASS = "AppDirect#1";
     private final String COMPANY_NAME = "Automathing Things Inc.";
-    private final int PROFESSIONAL = 1;
+    private final String PROFESSIONAL = "Professional";
     private final String PHONE = "777777777";
 
 
@@ -47,22 +48,33 @@ public class SignUpTests extends BaseTestSetup {
         logger.info("Customer email is: " + newCustomerEmail);
 
         mailPage = initMailPage(this.driver);
-        activateYourAccountPage = mailPage.openNewEmailBox(newCustomerEmail);
+        activateAccountPage = mailPage.openNewEmailBox(newCustomerEmail);
 
-        activateYourAccountPage.fillFirstName(getRandomString(7));
-        activateYourAccountPage.fillLastName(getRandomString(7));
-        activateYourAccountPage.fillPassword(APP_DIRECT_PASSWD);
-        activateYourAccountPage.fillconfirmPassword(APP_DIRECT_PASSWD);
-        activateYourAccountPage.fillCompanyName(COMPANY_NAME);
-        activateYourAccountPage.selectBusinessSize(PROFESSIONAL);
-        activateYourAccountPage.fillPhone(PHONE);
-        activateYourAccountPage.
-        activateYourAccountPage.clickCreateAccount();
+        String firstName = getRandomString(7);
+        activateAccountPage.fillFirstName(firstName);
+        String lastName = getRandomString(7);
+        activateAccountPage.fillLastName(lastName);
+        activateAccountPage.fillPassword(APP_DIRECT_PASS);
+        activateAccountPage.fillconfirmPassword(APP_DIRECT_PASS);
+        activateAccountPage.fillCompanyName(COMPANY_NAME);
+        activateAccountPage.selectBusinessSize(PROFESSIONAL);
+        activateAccountPage.fillPhone(PHONE);
+        activateAccountPage.clickAgreeTermsAndConditions();
+        homePage = activateAccountPage.clickCreateAccount();
+
+        logger.info(TEST_PASSED);
+
     }
 
-    @Test(priority=3)
+    @Test
+    public void failLoginTest(){
+
+        logger.info(TEST_PASSED);
+    }
+
+    @Test(priority=4)
     public void successfulLoginTest(){
 
+        logger.info(TEST_PASSED);
     }
-
 }

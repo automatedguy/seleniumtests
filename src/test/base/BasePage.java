@@ -1,16 +1,12 @@
 package base;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.log4testng.Logger;
 import pages.*;
 
-import java.security.SecureRandom;
 import java.util.ArrayList;
 
 public class BasePage {
@@ -25,7 +21,12 @@ public class BasePage {
 
     public void fillData(WebElement element, String description, String data){
         logger.info("Filling [" + description + "] : [" + data +"]");
-        element.clear();
+        try {
+            element.clear();
+        } catch (InvalidElementStateException ouch){
+            logger.info("Cant clear the input.");
+        }
+
         element.sendKeys(data);
     }
 
@@ -81,8 +82,8 @@ public class BasePage {
         return PageFactory.initElements(driver, ThanksPage.class);
     }
 
-    protected ActivateYourAccountPage initActivateYourAccountPage(WebDriver driver){
-        return PageFactory.initElements(driver, ActivateYourAccountPage.class);
+    protected ActivateAccountPage initActivateYourAccountPage(WebDriver driver){
+        return PageFactory.initElements(driver, ActivateAccountPage.class);
     }
 
 }
