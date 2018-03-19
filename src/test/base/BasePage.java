@@ -11,15 +11,15 @@ import java.util.ArrayList;
 
 public class BasePage {
 
-    public WebDriver driver;
+    protected WebDriver driver;
     public BasePage(WebDriver iDriver) {
         this.driver = iDriver;
     }
-    public static Logger logger = Logger.getLogger(BasePage.class);
+    protected static Logger logger = Logger.getLogger(BasePage.class);
 
     /* Common Actions */
 
-    public void fillData(WebElement element, String description, String data){
+    protected void fillData(WebElement element, String description, String data){
         logger.info("Filling [" + description + "] : [" + data +"]");
         try {
             element.clear();
@@ -29,28 +29,24 @@ public class BasePage {
         element.sendKeys(data);
     }
 
-    public void clickElement(WebElement element, String description){
+    protected void clickElement(WebElement element, String description){
         logger.info("Clicking: [" + description + "]");
         element.click();
     }
 
-    public void openNewTab(String url){
+    protected void openNewTab(String url){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.open('" + url + "','_blank');");
     }
 
-    public void closeNewTab(){
-
-    }
-
-    public void switchToNewTab(int tabIndex){
+    protected void switchToNewTab(int tabIndex){
         logger.info("Switching to child tab.");
         ArrayList<String> newTab = new ArrayList(this.driver.getWindowHandles());
         this.driver.switchTo().window(newTab.get(tabIndex));
         logger.info("Child Tab URL: " + "[" +  driver.getCurrentUrl() + "]");
     }
 
-    public void waitForElement(WebElement element, int timeOutInSeconds, String message){
+    protected void waitForElement(WebElement element, int timeOutInSeconds, String message){
         try {
             logger.info("Waiting for: [" + message + "]");
             WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);

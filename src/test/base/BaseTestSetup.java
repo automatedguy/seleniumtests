@@ -20,16 +20,16 @@ public class BaseTestSetup {
 
     private static final String RESOURCES_PATH = "src/test/resources/";
     private static final String BASE_URL = "https://www.appdirect.com/";
-    public static final String TEST_PASSED = "Test PASSED!";
+    protected static final String TEST_PASSED = "Test PASSED!";
 
     final String AB = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     SecureRandom rnd = new SecureRandom();
 
-    public static Logger logger = Logger.getLogger(BaseTestSetup.class);
+    protected static Logger logger = Logger.getLogger(BaseTestSetup.class);
 
-    public WebDriver driver;
+    protected WebDriver driver;
     private ChromeOptions chromeOptions;
-    public LandingPage landingPage = null;
+    protected LandingPage landingPage = null;
 
     @BeforeClass
     public void prepareLogger() throws Exception
@@ -40,11 +40,20 @@ public class BaseTestSetup {
         logger.info(message);
     }
 
-    public String getRandomString(int len){
+    protected String getRandomString(int len){
         StringBuilder sb = new StringBuilder( len );
         for( int i = 0; i < len; i++ )
             sb.append( AB.charAt( rnd.nextInt(AB.length()) ) );
         return sb.toString();
+    }
+
+    private void printSeparator(){
+        logger.info("***************************************");
+    }
+    protected void printTestInfo(String testInfo){
+        printSeparator();
+        logger.info("***" + testInfo + "***");
+        printSeparator();
     }
 
     @BeforeSuite(alwaysRun = true)
@@ -77,7 +86,7 @@ public class BaseTestSetup {
 
     /* Factories */
 
-    protected LandingPage initLandingPage(WebDriver driver){
+    private LandingPage initLandingPage(WebDriver driver){
         return PageFactory.initElements(driver, LandingPage.class);
     }
 

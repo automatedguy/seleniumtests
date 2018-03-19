@@ -29,6 +29,10 @@ public class SignUpTests extends BaseTestSetup {
 
     @Test(priority=1)
     public void signUpTest(ITestContext context){
+        String testInfo = "signUpTest: create an email account perform sign up\n" +
+                          "Assert that the thanks/confirmation page is displayed";
+
+        printTestInfo(testInfo);
 
         mailPage = initMailPage(this.driver);
         String newCustomerEmail = mailPage.createNewEmailAccount(getRandomString(9));
@@ -45,6 +49,12 @@ public class SignUpTests extends BaseTestSetup {
 
     @Test(priority=2)
     public void activateAccountTest(ITestContext context){
+        String testInfo = "activateAccountTest: activate the account created on signUpTest\n" +
+                          "Assert: the flow reaches the Home Page after activation\n" +
+                          "Assert: logout is performed correctly";
+
+        printTestInfo(testInfo);
+
         String newCustomerEmail = (String) context.getAttribute("newCustomerEmail");
         logger.info("Customer email is: " + newCustomerEmail);
 
@@ -78,6 +88,11 @@ public class SignUpTests extends BaseTestSetup {
 
     @Test(priority=3)
     public void failLoginTest(ITestContext context){
+        String testInfo = "failLoginTest: with the account activated on [activateAccountTest]\n" +
+                          "Assert: wrong user name/pass is displayed when sending wrong password";
+
+        printTestInfo(testInfo);
+
         String wrongPassMsg = "Unknown username / password";
         String wrongPass = "WrongPassword";
         String newCustomerEmail = (String) context.getAttribute("newCustomerEmail");
@@ -94,6 +109,11 @@ public class SignUpTests extends BaseTestSetup {
 
     @Test(priority=4)
     public void successfulLoginTest(ITestContext context){
+        String testInfo = "successfulLoginTest: with the account activated on [activateAccountTest]\n" +
+                          "Assert: login and logout are performed correctly";
+
+        printTestInfo(testInfo);
+
         String newCustomerEmail = (String) context.getAttribute("newCustomerEmail");
         logger.info("Customer email is: " + newCustomerEmail);
 

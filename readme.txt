@@ -1,7 +1,37 @@
-AppDirect Selenium Automated Test Exam.
+======================================
+AppDirect Selenium Automated Test Exam
+======================================
 
-Suggested system requirements 
+Suggested system requirements:
+=============================
 - Chrome Browser Version 65
 - Apache Maven 3.3.9
 - Java version: 1.8
 - Intellij 2017.2
+
+Project Structure:
+=================
+-base:
+	-BasePage: base page class
+	-BaseTestSetup: base test setup class
+-pages (BasePage subclasses):
+	-ActivateAccountPage
+	-HomePage
+	-LandingPage
+	-LoginPage
+	-MailPage
+	-SignUpPage
+	-ThanksPage
+-tests (BaseTestSetup subclasses):
+	-SignUpTests
+- resources:
+	-chromedriver (latest chrome driver version up to date)
+	-log4testng.properties (testng logger config)
+	
+How to run instructions:
+=======================
+a). From command line (simply run):
+	./run_test.sh	
+b). From IDE (Intellij suggested):
+	1). Right click on test/SignUpTests
+	2). Select 'Run SignUpTests'

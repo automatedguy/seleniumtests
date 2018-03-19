@@ -59,7 +59,6 @@ public class MailPage extends BasePage {
         String newCustomerEmail = randomEmail;
         fillEmailField(newCustomerEmail);
         clickGoButton();
-        closeNewTab();
         switchToNewTab(1);
         return newCustomerEmail + MAILINATOR_EMAIL;
     }
