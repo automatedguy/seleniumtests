@@ -30,10 +30,8 @@ Project Structure:
 	
 "How to run" instructions:
 =========================
-a). From command line (simply run):
-	./run_test.sh	
 	
-b). From IDE (Intellij suggested):
+a). From IDE (Intellij suggested):
 	1). Right click on test/SignUpTests
 	2). Select 'Run SignUpTests'
 	
@@ -41,6 +39,11 @@ b). From IDE (Intellij suggested):
 		-Source        : ./seleniumtests/src
 		-Tests         : ./seleniumtests/src/test
 		-Test Resources: ./seleniumtests/src/test/resources
+
+b). Once the project is configured correctly, from command line (simply run):
+	./run_test.sh
+
+    Please see Demo-TwoScreens-MPV.flv located in "video-demo" folder.
 
 A brief explanation about SignUpTests class:
 It contains 4 basic "@Test" methods, they will run in sequence when the class is invoked:
