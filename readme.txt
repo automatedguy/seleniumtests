@@ -41,3 +41,19 @@ b). From IDE (Intellij suggested):
 		-Source        : ./seleniumtests/src
 		-Tests         : ./seleniumtests/src/test
 		-Test Resources: ./seleniumtests/src/test/resources
+
+A brief explanation about SignUpTests class:
+It contains 4 basic "@Test" methods, they will run in sequence when the class is invoked:
+
+1). signUpTest: create a Mailinator email account and perform sign up
+              "Assert that the thanks/confirmation page is displayed"
+
+2). activateAccountTest: activate the account created on [signUpTest]
+                       "Assert: the flow reaches the Home Page after activation"
+                       "Assert: logout is performed correctly"
+
+3). failLoginTest: with the account activated on [activateAccountTest] send a wrong password
+                 "Assert: wrong user name/pass is displayed when sending wrong password"
+
+4). successfulLoginTest: with the account activated on [activateAccountTest]
+                       "Assert: login and logout are performed correctly"
