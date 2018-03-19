@@ -28,10 +28,16 @@ Project Structure:
 	-chromedriver (latest chrome driver version up to date)
 	-log4testng.properties (testng logger config)
 	
-How to run instructions:
-=======================
+"How to run" instructions:
+=========================
 a). From command line (simply run):
 	./run_test.sh	
+	
 b). From IDE (Intellij suggested):
 	1). Right click on test/SignUpTests
 	2). Select 'Run SignUpTests'
+	
+	Intellij project structure setup:
+		-Source folder: /src
+		-Tests folder: /tests
+		-Test resources folder: Test resources
