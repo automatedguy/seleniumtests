@@ -38,6 +38,6 @@ b). From IDE (Intellij suggested):
 	2). Select 'Run SignUpTests'
 	
 	Intellij project structure setup:
-		-Source folder: /src
-		-Tests folder: /tests
-		-Test resources folder: Test resources
+		-Source        : ./seleniumtests/src
+		-Tests         : ./seleniumtests/src/test
+		-Test Resources: ./seleniumtests/src/test/resources
