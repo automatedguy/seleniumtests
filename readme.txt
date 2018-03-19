@@ -24,7 +24,7 @@ Project Structure:
 	-ThanksPage
 -tests (BaseTestSetup subclasses):
 	-SignUpTests
-- resources:
+-resources:
 	-chromedriver (latest chrome driver version up to date)
 	-log4testng.properties (testng logger config)
 	
